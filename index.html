@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Réponses Pro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f3ff;
+      padding: 20px;
+      color: #222;
+    }
+    main {
+      max-width: 500px;
+      margin: 30px auto;
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+    }
+    h1 { color: #6d28d9; }
+    textarea, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      box-sizing: border-box;
+      border-radius: 8px;
+    }
+    button {
+      background: #6d28d9;
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+    #resultat {
+      white-space: pre-wrap;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>✨ Réponses Pro</h1>
+    <p>Rédige tes messages professionnels facilement.</p>
+
+    <select id="type">
+      <option value="reponse">Réponse client</option>
+      <option value="relance">Relance client</option>
+      <option value="devis">Envoi de devis</option>
+    </select>
+
+    <textarea id="message" rows="5"
+      placeholder="Écris quelques mots..."></textarea>
+
+    <button onclick="generer()">Créer mon message</button>
+
+    <div id="resultat"></div>
+  </main>
+
+  <script>
+    function generer() {
+      const message = document.getElementById("message").value.trim();
+      const type = document.getElementById("type").value;
+      const resultat = document.getElementById("resultat");
+
+      if (!message) {
+        resultat.textContent = "Écris d'abord ton message.";
+        return;
+      }
+
+      let intro = "Merci pour votre message.";
+      if (type === "relance") {
+        intro = "Je me permets de revenir vers vous.";
+      }
+      if (type === "devis") {
+        intro = "Suite à notre échange, voici les informations concernant votre devis.";
+      }
+
+      resultat.textContent =
+        "Bonjour,\n\n" + intro + "\n\n" +
+        message + "\n\nBien cordialement.";
+    }
+  </script>
+</body>
+</html>
